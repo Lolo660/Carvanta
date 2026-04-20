@@ -10,7 +10,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         CarRentalSystem system = new CarRentalSystem();
 
-        // ✅ 8 CARS UPDATED
+
         system.setCars(
                 new Car(1, "Toyota Corolla"),
                 new Car(2, "BMW X5"),
