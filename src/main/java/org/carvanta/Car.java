@@ -3,12 +3,16 @@ package org.carvanta;
 public class Car {
 
     private int carId;
+    private String brand;
     private String model;
+    private String category;
     private boolean available;
 
-    public Car(int carId, String model) {
+    public Car(int carId, String brand, String model, String category) {
         this.carId = carId;
+        this.brand = brand;
         this.model = model;
+        this.category = category;
         this.available = true;
     }
 
@@ -16,8 +20,8 @@ public class Car {
         return carId;
     }
 
-    public String getModel() {
-        return model;
+    public String getCategory() {
+        return category;
     }
 
     public boolean isAvailable() {
@@ -30,5 +34,9 @@ public class Car {
 
     public void giveBack() {
         available = true;
+    }
+
+    public void displayCar() {
+        System.out.println(carId + " - " + brand + " " + model + " (" + category + ")");
     }
 }

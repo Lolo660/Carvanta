@@ -13,7 +13,6 @@ public class Rental {
     }
 
     public void showDetails() {
-        System.out.println(customer.name + " rented " +
-                car.getModel() + " for " + days + " days.");
+        System.out.println(customer.name + " rented a car for " + days + " days.");
     }
 }

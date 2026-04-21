@@ -1,6 +1,4 @@
 package org.carvanta;
-
-
 import java.util.Scanner;
 
 public class Main {
@@ -10,57 +8,78 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         CarRentalSystem system = new CarRentalSystem();
 
-
-        system.setCars(
-                new Car(1, "Toyota Corolla"),
-                new Car(2, "BMW X5"),
-                new Car(3, "Mercedes-Benz C-Class"),
-                new Car(4, "Honda Civic"),
-                new Car(5, "Audi A4"),
-                new Car(6, "Hyundai Tucson"),
-                new Car(7, "Range Rover Evoque"),
-                new Car(8, "Volkswagen Golf")
-        );
-
-        System.out.print("Enter your name: ");
-        String name = scanner.nextLine();
-
-        Customer customer = new Customer(1, name);
+        Customer customer = new Customer(1, "User");
         customer.displayRole();
+
+        system.addCar(new Car(1, "Toyota", "RAV4", "SUV"));
+        system.addCar(new Car(2, "BMW", "X5", "SUV"));
+        system.addCar(new Car(3, "Range Rover", "Sport", "SUV"));
+        system.addCar(new Car(4, "Mercedes", "GLA", "SUV"));
+
+
+        system.addCar(new Car(5, "Tesla", "Model 3", "Electric"));
+        system.addCar(new Car(6, "Nissan", "Leaf", "Electric"));
+        system.addCar(new Car(7, "Hyundai", "Kona", "Electric"));
+        system.addCar(new Car(8, "BMW", "i3", "Electric"));
+
+
+        system.addCar(new Car(9, "Toyota", "Prius", "Hybrid"));
+        system.addCar(new Car(10, "Honda", "Insight", "Hybrid"));
+        system.addCar(new Car(11, "Ford", "Escape", "Hybrid"));
+        system.addCar(new Car(12, "Hyundai", "Ioniq", "Hybrid"));
+
+
+        system.addCar(new Car(13, "Toyota", "Corolla", "Sedan"));
+        system.addCar(new Car(14, "Honda", "Civic", "Sedan"));
+        system.addCar(new Car(15, "BMW", "3 Series", "Sedan"));
+        system.addCar(new Car(16, "Audi", "A4", "Sedan"));
 
         int choice;
 
         do {
-            System.out.println("\n1. View Cars");
+            System.out.println("\n1. View Cars by Category");
             System.out.println("2. Rent Car");
             System.out.println("3. Return Car");
             System.out.println("4. Exit");
 
             choice = scanner.nextInt();
 
-            switch (choice) {
+            try {
 
-                case 1:
-                    system.showAvailableCars();
-                    break;
+                switch (choice) {
 
-                case 2:
-                    System.out.print("Enter Car ID: ");
-                    int id = scanner.nextInt();
-                    System.out.print("Enter Days: ");
-                    int days = scanner.nextInt();
-                    system.rentCar(customer, id, days);
-                    break;
+                    case 1:
+                        System.out.println("Enter category (SUV / Electric / Hybrid / Sedan):");
+                        String category = scanner.next();
+                        system.showCarsByCategory(category);
+                        break;
 
-                case 3:
-                    System.out.print("Enter Car ID: ");
-                    int rid = scanner.nextInt();
-                    system.returnCar(rid);
-                    break;
+                    case 2:
+                        System.out.print("Enter Car ID: ");
+                        int id = scanner.nextInt();
 
-                case 4:
-                    System.out.println("Goodbye!");
-                    break;
+                        System.out.print("Enter Days: ");
+                        int days = scanner.nextInt();
+
+                        system.rentCar(customer, id, days);
+                        break;
+
+                    case 3:
+                        System.out.print("Enter Car ID: ");
+                        int rid = scanner.nextInt();
+
+                        system.returnCar(rid);
+                        break;
+                }
+
+            } catch (CarNotAvailableException e) {
+                System.out.println("Error: " + e.getMessage());
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Input Error: " + e.getMessage());
+
+            } catch (Exception e) {
+                System.out.println("Unexpected error occurred.");
             }
 
         } while (choice != 4);
