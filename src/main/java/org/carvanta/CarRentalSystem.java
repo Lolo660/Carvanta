@@ -57,7 +57,6 @@ public class CarRentalSystem {
             }
         }
     }
-
     public void removeCar(int carId) {
 
         Car carToRemove = null;
