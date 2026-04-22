@@ -1,26 +1,86 @@
 package org.carvanta;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class CarRentalSystem {
 
-    private ArrayList<Car> cars = new ArrayList<>();
+    // I used a List because the system can have many cars.
+    // A List lets me store multiple cars and go through them easily when needed.
+    private List<Car> cars = new ArrayList<>();
+
+    // I used a Map to organize cars by their category.
+    // Each category (like SUV or Electric) is linked to a list of cars in that category.
+    // This makes it easy to find cars based on what the user wants.
+    private Map<String, List<Car>> carsByCategory = new HashMap<>();
+
+    // I used a Set to store categories so that each category appears only once.
+    // Even if I add many cars of the same category, it won’t repeat.
+    private Set<String> categories = new HashSet<>();
+
+
 
     public void addCar(Car car) {
+
         cars.add(car);
+
+        categories.add(car.getCategory());
+
+        carsByCategory.putIfAbsent(car.getCategory(), new ArrayList<>());
+        carsByCategory.get(car.getCategory()).add(car);
     }
+
+
+    public void showCategories() {
+
+        System.out.println("\nAvailable Categories:");
+
+        for (String category : categories) {
+            System.out.println("- " + category);
+        }
+    }
+
 
     public void showCarsByCategory(String category) {
 
-        System.out.println("\nAvailable " + category + " Cars:");
+        List<Car> categoryCars = carsByCategory.get(category);
 
-        for (Car car : cars) {
-            if (car.isAvailable() &&
-                    car.getCategory().equalsIgnoreCase(category)) {
+        if (categoryCars == null) {
+            System.out.println("No such category!");
+            return;
+        }
+
+        System.out.println("\nCars in " + category + ":");
+
+        for (Car car : categoryCars) {
+            if (car.isAvailable()) {
                 car.displayCar();
             }
         }
     }
+
+    public void removeCar(int carId) {
+
+        Car carToRemove = null;
+
+        for (Car car : cars) {
+            if (car.getCarId() == carId) {
+                carToRemove = car;
+                break;
+            }
+        }
+
+        if (carToRemove != null) {
+
+            cars.remove(carToRemove);
+
+            carsByCategory.get(carToRemove.getCategory()).remove(carToRemove);
+
+            System.out.println("Car removed successfully.");
+        } else {
+            System.out.println("Car not found.");
+        }
+    }
+
 
     private Car findCar(int id) {
         for (Car car : cars) {
@@ -30,6 +90,7 @@ public class CarRentalSystem {
         }
         return null;
     }
+
 
     public void rentCar(Customer customer, int carId, int days)
             throws CarNotAvailableException {
@@ -45,12 +106,11 @@ public class CarRentalSystem {
         }
 
         if (!car.isAvailable()) {
-            throw new CarNotAvailableException("Car is already rented!");
+            throw new CarNotAvailableException("Car already rented!");
         }
 
         car.rent();
-
-        System.out.println("Car rented successfully by " + customer.name);
+        System.out.println("Car rented successfully!");
     }
 
 
@@ -63,7 +123,6 @@ public class CarRentalSystem {
         }
 
         car.giveBack();
-
         System.out.println("Car returned successfully!");
     }
 }

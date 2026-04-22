@@ -1,5 +1,6 @@
 package org.carvanta;
 
+
 public class Car {
 
     private int carId;

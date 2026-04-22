@@ -1,4 +1,5 @@
 package org.carvanta;
+
 import java.util.Scanner;
 
 public class Main {
@@ -9,25 +10,21 @@ public class Main {
         CarRentalSystem system = new CarRentalSystem();
 
         Customer customer = new Customer(1, "User");
-        customer.displayRole();
 
         system.addCar(new Car(1, "Toyota", "RAV4", "SUV"));
         system.addCar(new Car(2, "BMW", "X5", "SUV"));
         system.addCar(new Car(3, "Range Rover", "Sport", "SUV"));
         system.addCar(new Car(4, "Mercedes", "GLA", "SUV"));
 
-
         system.addCar(new Car(5, "Tesla", "Model 3", "Electric"));
         system.addCar(new Car(6, "Nissan", "Leaf", "Electric"));
         system.addCar(new Car(7, "Hyundai", "Kona", "Electric"));
         system.addCar(new Car(8, "BMW", "i3", "Electric"));
 
-
         system.addCar(new Car(9, "Toyota", "Prius", "Hybrid"));
         system.addCar(new Car(10, "Honda", "Insight", "Hybrid"));
         system.addCar(new Car(11, "Ford", "Escape", "Hybrid"));
         system.addCar(new Car(12, "Hyundai", "Ioniq", "Hybrid"));
-
 
         system.addCar(new Car(13, "Toyota", "Corolla", "Sedan"));
         system.addCar(new Car(14, "Honda", "Civic", "Sedan"));
@@ -37,10 +34,11 @@ public class Main {
         int choice;
 
         do {
-            System.out.println("\n1. View Cars by Category");
-            System.out.println("2. Rent Car");
-            System.out.println("3. Return Car");
-            System.out.println("4. Exit");
+            System.out.println("\n1. View Categories");
+            System.out.println("2. View Cars by Category");
+            System.out.println("3. Rent Car");
+            System.out.println("4. Return Car");
+            System.out.println("5. Exit");
 
             choice = scanner.nextInt();
 
@@ -49,12 +47,16 @@ public class Main {
                 switch (choice) {
 
                     case 1:
-                        System.out.println("Enter category (SUV / Electric / Hybrid / Sedan):");
+                        system.showCategories();
+                        break;
+
+                    case 2:
+                        System.out.print("Enter category: ");
                         String category = scanner.next();
                         system.showCarsByCategory(category);
                         break;
 
-                    case 2:
+                    case 3:
                         System.out.print("Enter Car ID: ");
                         int id = scanner.nextInt();
 
@@ -64,10 +66,9 @@ public class Main {
                         system.rentCar(customer, id, days);
                         break;
 
-                    case 3:
+                    case 4:
                         System.out.print("Enter Car ID: ");
                         int rid = scanner.nextInt();
-
                         system.returnCar(rid);
                         break;
                 }
@@ -82,7 +83,7 @@ public class Main {
                 System.out.println("Unexpected error occurred.");
             }
 
-        } while (choice != 4);
+        } while (choice != 5);
 
         scanner.close();
     }
