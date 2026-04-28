@@ -17,12 +17,28 @@ public class Car {
         this.available = true;
     }
 
+    public Car(int carId, String brand, String model, String category, boolean available) {
+        this.carId = carId;
+        this.brand = brand;
+        this.model = model;
+        this.category = category;
+        this.available = available;
+    }
+
     public int getCarId() {
         return carId;
     }
 
     public String getCategory() {
         return category;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getModel() {
+        return model;
     }
 
     public boolean isAvailable() {

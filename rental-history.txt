@@ -1,0 +1,3 @@
+2026-04-29 01:27:47 | Customer: User (ID: 1) | Car: Toyota RAV4 (ID: 1) | Action: RENTED | Days: 20
+2026-04-29 01:28:02 | Customer: Unknown (ID: 0) | Car: Toyota RAV4 (ID: 1) | Action: RETURNED | Days: 0
+2026-04-29 01:28:18 | Customer: Unknown (ID: 0) | Car: Toyota RAV4 (ID: 1) | Action: RETURNED | Days: 0

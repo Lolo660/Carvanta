@@ -1,0 +1,16 @@
+1|Toyota|RAV4|SUV|true
+2|BMW|X5|SUV|false
+3|Range Rover|Sport|SUV|true
+4|Mercedes|GLA|SUV|true
+5|Tesla|Model 3|Electric|true
+6|Nissan|Leaf|Electric|true
+7|Hyundai|Kona|Electric|true
+8|BMW|i3|Electric|true
+9|Toyota|Prius|Hybrid|true
+10|Honda|Insight|Hybrid|true
+11|Ford|Escape|Hybrid|true
+12|Hyundai|Ioniq|Hybrid|true
+13|Toyota|Corolla|Sedan|true
+14|Honda|Civic|Sedan|true
+15|BMW|3 Series|Sedan|true
+16|Audi|A4|Sedan|true
